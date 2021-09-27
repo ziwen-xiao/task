@@ -1,0 +1,10 @@
+FROM node:lts-alpine
+ENV NODE_ENV=development
+WORKDIR /app
+COPY ["package.json", "./"]
+RUN yarn --development --silent
+RUN rm package.json
+COPY ./dist/ .
+EXPOSE 3000
+CMD ["node", "main.js"]
+
